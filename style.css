@@ -1,0 +1,134 @@
+:root {
+
+  /*
+    https://medium.com/@adrjohnston/native-css-mixins-ee2a50e07b54
+    color: #f5f5f5;*/
+}
+
+/* reset */
+* {
+  margin: 0;
+}
+
+/*
+@media query orirentation : potrait or landscape;
+ */
+
+html:not([lang]),
+html[lang=""] {
+  border-top: 20px solid red;
+}
+
+html:not([lang]),html[lang=""] { border-top: 20px solid red; }
+img:not([alt]),img[alt=""] { border: 5px dashed red; }
+canvas:not([role]),canvas:not([aria-label]),canvas[role=""],canvas[aria-label=""] { border: 5px dashed red; }
+
+
+/*
+html
+moz-osx-font-smoothing: auto;
+
+body
+font-variant-ligatures: normal;
+font-kerning: normal;
+*/
+
+div.root-margin-top {
+  position: fixed;
+  top: 250px;
+  width: 100vw;
+  height: 1px;
+  background-color: goldenrod;
+  z-index: 1001;
+}
+div.root-margin-bottom {
+  position: fixed;
+  bottom: 250px;
+  width: 100vw;
+  height: 1px;
+  background-color: goldenrod;
+  z-index: 1001;
+}
+
+body {
+  margin: 0;
+  background-color: rgba(40, 40, 190, 0.5);
+  background-color: black;
+  background-image: url("andrea-reiman-580725-unsplash.jpg");
+  /* background-attachment: fixed;*/
+
+  /*position: relative;*/
+
+
+  color: #ffffff;
+
+  overflow-x: hidden;
+}
+
+header {
+  height: 200px;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+h2 {
+  margin-bottom: 20px
+}
+
+ul {
+  list-style: none;
+  padding: 20px;
+}
+
+main {
+  width: calc(100vw - 100px);
+  position: relative;
+  top: 250px;
+  left: 50px;
+  /*height: 3000px;
+  overflow: scroll;
+  min-height: 200vh;
+  overflow: scroll;
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+}
+
+.inside-main {
+  background: hsla(0, 5%, 15%, 0.8);
+  height: 25vh;
+  margin-bottom: 2em;
+  padding: 10px;
+}
+
+.hero {
+  height: 60vh;
+  background: hsla(0, 50%, 50%, 0.8);
+}
+
+.three {
+  /*background-color: rgba(40, 40, 190, 255);*/
+  background-image: linear-gradient( rgba(206, 60, 246, 0.5) 50%, rgba(40, 40, 190, 0.5) 50%, rgba(40, 40, 190, 0.5) 75%, rgba(72, 190, 40, 0.5) 75%);
+  border: 4px solid rgb(20, 20, 120);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transform: translateY(100px);
+  opacity: 0.5;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.three.up {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.three h2 {
+  position: absolute;
+  top: calc(50% - 1rem)
+
+}
+
