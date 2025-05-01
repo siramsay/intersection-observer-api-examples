@@ -16,13 +16,6 @@ function handleIntersect(changes, observer) {
   console.log('the observer:', observer); // this gives you the options and prototype
   console.log(changes);
 
-  /*  if (IntersectionObserverEntry.[0].isIntersecting) {
-        IntersectionObserverEntry.target.classList.add("up");
-        //if (entry.intersectionRatio > 0.75) alert('boon')
-    } else {
-        IntersectionObserverEntry.target.classList.remove('up')
-    }*/
-
   changes.forEach((entry) => {
     console.log('Entry:', entry);
 
