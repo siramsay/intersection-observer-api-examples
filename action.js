@@ -1,4 +1,5 @@
 const three = document.getElementById('three');
+//const three = document.querySelectorAll('.three');
 
 let observer;
 

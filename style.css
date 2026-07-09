@@ -60,10 +60,18 @@ body {
 }
 
 header {
-  height: 200px;
+  height: auto;
   position: fixed;
+  padding: 50px;
   width: 100%;
   z-index: 100;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.seventy-ch {
+  width: 70ch;
+  margin-block: 1rem;
 }
 
 h2 {
