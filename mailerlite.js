@@ -1,8 +1,9 @@
-(function (Drupal) {
-  Drupal.behaviors.mailerliteLazy = {
-    attach: function (context, settings) {
-      const placeholder = context.querySelector('#mailerlite-placeholder');
-      if (!placeholder || placeholder.dataset.loaded) return;
+//(function (Drupal) {
+//  Drupal.behaviors.mailerliteLazy = {
+//    attach: function (context, settings) {
+      // const placeholder = context.querySelector('#mailerlite-placeholder');
+      const placeholder = document.querySelector('#mailerlite-placeholder');
+      //if (!placeholder || placeholder.dataset.loaded) return;
 
       // Define the success callback globally FIRST (MailerLite needs this)
       window.ml_webform_success_11389960 = function () {
@@ -13,7 +14,7 @@
 
       let options = {
         root: null, // null means use viewport
-        rootMargin: '0px 0px -50px 0px',
+        rootMargin: '0px 0px -250px 0px',
         threshold: 0.1,
       };
 
@@ -697,13 +698,13 @@
             const script = document.createElement('script');
             script.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?v2d8fb22bb5b3677f161552cd9e774127';
             script.async = true;
-            document.body.appendChild(script);   // or append to placeholder
-
+            document.body.appendChild(script);
             placeholder.dataset.loaded = 'true';
             observer.disconnect();
           }
         });
       }
-    }
-  };
-})(Drupal);
+
+//    }
+//  };
+//})(Drupal);
