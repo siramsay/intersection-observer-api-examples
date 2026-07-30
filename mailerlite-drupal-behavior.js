@@ -1,31 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const placeholder = document.querySelector('#mailerlite-placeholder');
-  if (!placeholder || placeholder.dataset.loaded) return;
+(function (Drupal) {
+  Drupal.behaviors.mailerliteLazy = {
+    attach: function (context, settings) {
+      const placeholder = context.querySelector('#mailerlite-placeholder');
 
-  // Define the success callback globally FIRST (MailerLite needs this)
-  window.ml_webform_success_11389960 = function () {
-    var $ = ml_jQuery || jQuery;
-    $('.ml-subscribe-form-11389960 .row-success').show();
-    $('.ml-subscribe-form-11389960 .row-form').hide();
-  };
 
-  let options = {
-    root: null, // null means use viewport
-    rootMargin: '0px 0px -250px 0px', threshold: 0.1,
-  };
+      if (!placeholder || placeholder.dataset.loaded) return;
 
-  const observer = new IntersectionObserver(handleIntersect, options);
+      // Define the success callback globally FIRST (MailerLite needs this)
+      window.ml_webform_success_11389960 = function () {
+        var $ = ml_jQuery || jQuery;
+        $('.ml-subscribe-form-11389960 .row-success').show();
+        $('.ml-subscribe-form-11389960 .row-form').hide();
+      };
 
-  observer.observe(placeholder);
+      let options = {
+        root: null, // null means use viewport
+        rootMargin: '0px 0px -250px 0px', threshold: 0.1,
+      };
 
-  function handleIntersect(entries, observer) {
-    entries.forEach((entry) => {
+      const observer = new IntersectionObserver(handleIntersect, options);
 
-      if (entry.isIntersecting) {
+      observer.observe(placeholder);
 
-        // Create a container div for the form HTML (without the script yet)
-        const formContainer = document.createElement('div');
-        formContainer.innerHTML = `<!-- Your entire MailerLite form embed code goes here -->
+      function handleIntersect(entries, observer) {
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            // Create a container div for the form HTML (without the script yet)
+            const formContainer = document.createElement('div');
+            formContainer.innerHTML = `<!-- Your entire MailerLite form embed code goes here -->
                 <style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1705921");</style>
                 <style type="text/css">/* LOADER */
   .ml-form-embedSubmitLoad {
@@ -687,17 +691,21 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
   </div>`;
 
-        placeholder.innerHTML = '';
-        placeholder.appendChild(formContainer);
+            placeholder.innerHTML = '';
+            placeholder.appendChild(formContainer);
 
-        // Then load the MailerLite tracking/init script if needed
-        const script = document.createElement('script');
-        script.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?v2d8fb22bb5b3677f161552cd9e774127';
-        script.async = true;
-        document.body.appendChild(script);
-        placeholder.dataset.loaded = 'true';
-        observer.disconnect();
+            // Then load the MailerLite tracking/init script if needed
+            const script = document.createElement('script');
+            script.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?v2d8fb22bb5b3677f161552cd9e774127';
+            script.async = true;
+            document.body.appendChild(script);
+            placeholder.dataset.loaded = 'true';
+            observer.disconnect();
+          }
+        });
       }
-    });
-  }
-});
+
+
+    }
+  };
+})(Drupal);
